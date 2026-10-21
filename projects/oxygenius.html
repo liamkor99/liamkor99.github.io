@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Oxygenius — Liam Korol</title>
+  <link rel="stylesheet" href="../styles.css?v=25">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="../index.html">Liam Korol</a>
+    <nav><a href="../index.html">Home</a><a class="active" href="../projects.html">Projects</a><a href="../resume.html">Resume</a></nav>
+  </header>
+  <main class="page detail">
+    <a class="back" href="../projects.html">← All projects</a>
+    <p class="eyebrow">Project 01</p>
+    <h1>Oxygenius</h1>
+    <p class="lede">An interactive educational device that teaches Durham middle and high school students how pulse oximetry works.</p>
+    <div class="detail-visual photo"><img src="../assets/gallery/oxygenius/oxygenius-1.png" alt="Oxygenius project image"></div>
+
+    <section>
+      <h2>Purpose and client</h2>
+      <p>My EGR 101 team was tasked by Dr. Megan Madonna, director of Duke Ignite, with creating a teaching aid that would help her students understand pulse oximetry. Duke Ignite is a program for local Durham middle and high school students that introduces important STEM concepts through hands-on learning.</p>
+      <p>We developed Oxygenius to make the science behind a pulse oximeter visible and interactive. Instead of only showing students a medical device and its reading, the teaching aid breaks the process into demonstrations of light absorption, transmission through tissue, and changing blood oxygen levels.</p>
+    </section>
+
+    <section>
+      <h2>Functionality</h2>
+      <p>Oxygenius uses three hands-on demonstrations to explain how a pulse oximeter estimates blood oxygen saturation.</p>
+
+      <h3>1. Light absorption</h3>
+      <p>A laser demonstration shows that oxygenated and deoxygenated blood absorb red and infrared light differently. Dark-red gel represents deoxygenated blood and absorbs more red light than the lighter-red gel. The relationship reverses for infrared light. A pulse oximeter measures how much of each wavelength passes through tissue and uses the ratio to estimate blood oxygen saturation.</p>
+
+      <h3>2. Light through tissue</h3>
+      <p>A push-activated laser acts as a simplified pulse oximeter. The user places a finger on the control and presses down to see light pass through the finger. A working pulse oximeter beside it allows users to measure their own blood oxygen level and connect the demonstration to the real device.</p>
+
+      <h3>3. Oxygenation conditions</h3>
+      <p>An illuminated model finger and percentage display respond to three selectable conditions:</p>
+      <ul class="project-list">
+        <li><strong>Healthy:</strong> the display reads 100%, and all 10 lights in the finger illuminate red.</li>
+        <li><strong>Hypoxemia:</strong> the display reads 80%, with eight red lights and two purple lights.</li>
+        <li><strong>Critical:</strong> the display reads 60%, with six red lights and four purple lights.</li>
+      </ul>
+      <p>This is a simplified representation, but it teaches that oxygen saturation is related to the proportion of oxygenated and deoxygenated hemoglobin in the blood.</p>
+    </section>
+
+    <section>
+      <h2>Engineering process</h2>
+      <p>We began with client questions, background research, and guidance from a technical mentor. From that work, we defined measurable design objectives that reflected how Duke Ignite planned to teach with, transport, and maintain the device.</p>
+
+      <div class="criteria-table-wrap">
+        <table class="criteria-table">
+          <thead>
+            <tr><th>Design criterion</th><th>Target</th><th>How we measured it</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Informative</td><td>Teach at least two pulse oximetry concepts</td><td>Mock lesson with pre- and post-lesson questions. The target was an average post-lesson score of at least 4 out of 5.</td></tr>
+            <tr><td>Interactive</td><td>Include at least two user-operated controls</td><td>Students rated how well the interactive elements supported their understanding. The target was an average rating of at least 4 out of 5.</td></tr>
+            <tr><td>Ease of use</td><td>Allow a teaching assistant to set up and understand the model in under five minutes</td><td>First-time users explored the model without guidance. The target was to interact with every feature in under two minutes.</td></tr>
+            <tr><td>Transportable</td><td>Stay within 16 × 22 × 9.5 inches, weigh no more than 20 pounds, and include handles</td><td>The team moved the device through buildings and transported it in a vehicle. The target was an average rating of at least 4 out of 5.</td></tr>
+            <tr><td>Durable</td><td>Remain functional after rough student use and support at least two years of expected use</td><td>The team completed five rough-use sessions, including forceful controls and a one-foot drop. The target was no major damage or loss of function.</td></tr>
+            <tr><td>Safety</td><td>Avoid detachable parts smaller than one inch</td><td>The team reviewed the completed assembly for small removable components that could create a choking hazard.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Our team brainstormed 74 initial ideas. After removing redundant or infeasible options, we evaluated 24 ideas with Pugh screening matrices. We combined the strongest partial solutions in a morphological chart, developed three complete concepts, and used a weighted Pugh scoring matrix to select the final design.</p>
+
+      <div class="project-spec-grid">
+        <article>
+          <span>Decision making</span>
+          <h3>Concept evaluation</h3>
+          <p>Used morphological and Pugh matrices to generate ideas and select between competing concepts.</p>
+        </article>
+        <article>
+          <span>Communication</span>
+          <h3>Design presentations</h3>
+          <p>Delivered two oral presentations, wrote technical memos, communicated with the client, and concluded with a final poster presentation.</p>
+        </article>
+        <article>
+          <span>Project management</span>
+          <h3>Continuous documentation</h3>
+          <p>Tracked tasks, decisions, and project progress in Trello throughout the design process.</p>
+        </article>
+      </div>
+
+      <p>We also tested whether the difference in laser brightness remained visible under different lighting conditions, using a target rating of at least 4 out of 5. The completed prototype passed the team’s planned tests.</p>
+
+      <p>The technical memos, presentations, client feedback, and ongoing Trello documentation kept the team aligned as the design evolved and ensured that the final teaching aid addressed the needs of Duke Ignite’s students and instructors.</p>
+    </section>
+
+    <section>
+      <h2>Technical skills</h2>
+      <p>Woodworking · CAD · Moldmaking · Soldering · Laser cutting · Arduino · Concept evaluation · Technical communication · Project documentation</p>
+    </section>
+
+    <section>
+      <h2>Media</h2>
+      <h3 class="media-heading">Poster</h3>
+
+      <div class="pdf-viewer-shell pdf-js-viewer" data-pdf-url="../assets/gallery/oxygenius/oxygenius-poster.pdf" data-pdf-label="Oxygenius poster" aria-label="Oxygenius poster PDF viewer">
+        <div class="pdf-toolbar">
+          <div class="pdf-toolbar-group">
+            <button type="button" data-pdf-prev aria-label="Previous poster page">←</button>
+            <span><span data-pdf-page>1</span> / <span data-pdf-pages>1</span></span>
+            <button type="button" data-pdf-next aria-label="Next poster page">→</button>
+          </div>
+          <div class="pdf-toolbar-group">
+            <button type="button" data-pdf-zoom-out aria-label="Zoom poster out">−</button>
+            <span data-pdf-zoom>100%</span>
+            <button type="button" data-pdf-zoom-in aria-label="Zoom poster in">+</button>
+            <a href="../assets/gallery/oxygenius/oxygenius-poster.pdf" target="_blank">Open PDF ↗</a>
+          </div>
+        </div>
+        <div class="pdf-canvas-wrap" data-pdf-wrap>
+          <canvas class="pdf-page-canvas" data-pdf-canvas aria-label="Rendered Oxygenius poster page"></canvas>
+          <p class="pdf-error" data-pdf-error hidden>Unable to load the poster preview. Please use “Open PDF” above.</p>
+        </div>
+      </div>
+
+      <h3 class="media-heading">Prototype video</h3>
+      <video class="media-video" controls preload="metadata"><source src="../assets/gallery/oxygenius/oxygenius-prototype.mp4" type="video/mp4">Your browser does not support this video.</video>
+
+      <h3 class="media-heading">TA presentation guide</h3>
+      <p>The two-page instruction sheet used by Duke Ignite teaching assistants when presenting the model.</p>
+      <div class="pdf-viewer-shell pdf-js-viewer" data-pdf-scroll data-pdf-url="../assets/gallery/oxygenius/oxygenius-ta-guide.pdf" data-pdf-label="TA presentation guide" aria-label="Duke Ignite TA presentation guide PDF viewer">
+        <div class="pdf-toolbar">
+          <div class="pdf-toolbar-group">
+            <span>2 pages · Scroll to continue</span>
+          </div>
+          <div class="pdf-toolbar-group">
+            <button type="button" data-pdf-zoom-out aria-label="Zoom TA guide out">−</button>
+            <span data-pdf-zoom>100%</span>
+            <button type="button" data-pdf-zoom-in aria-label="Zoom TA guide in">+</button>
+            <a href="../assets/gallery/oxygenius/oxygenius-ta-guide.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+            <a href="../assets/gallery/oxygenius/oxygenius-ta-guide.pdf" download>Download</a>
+          </div>
+        </div>
+        <div class="pdf-canvas-wrap" data-pdf-wrap>
+          <div class="pdf-page-stack" data-pdf-page-stack></div>
+          <p class="pdf-error" data-pdf-error hidden>Unable to load the TA guide preview. Please use “Open PDF” above.</p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+  <footer><div><a href="mailto:liam.korol@duke.edu">liam.korol@duke.edu</a><a href="https://www.linkedin.com/" target="_blank">LinkedIn ↗</a></div></footer>
+  <script type="module" src="../poster-viewer.js?v=3"></script>
+</body>
+</html>

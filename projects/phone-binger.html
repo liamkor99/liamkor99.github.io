@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Phone Binger | Liam Korol</title>
+  <link rel="stylesheet" href="../styles.css?v=18">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="../index.html">Liam Korol</a>
+    <nav><a href="../index.html">Home</a><a class="active" href="../projects.html">Projects</a><a href="../resume.html">Resume</a></nav>
+  </header>
+
+  <main class="page detail">
+    <a class="back" href="../projects.html">← All projects</a>
+    <p class="eyebrow">Project 05</p>
+    <h1>Phone Binger</h1>
+    <p class="lede">A one-button ESP32 device that helps locate a misplaced iPhone without requiring another phone or computer.</p>
+
+    <div class="detail-visual photo phone-binger-hero"><img src="../assets/gallery/phone-binger/phone-binger-2.jpg" alt="Phone Binger electronics inside the prototype enclosure"></div>
+
+    <section>
+      <h2>The problem</h2>
+      <p>The project began with a common problem: a misplaced phone and no second device nearby to use Find My iPhone. I wanted to create a dedicated solution that required only one physical button and no additional phone, computer, or login.</p>
+
+      <div class="project-spec-grid">
+        <article>
+          <span>Hardware</span>
+          <h3>ESP32 button box</h3>
+          <p>A Wi-Fi-connected microcontroller, push button, and status light provide a simple physical interface.</p>
+        </article>
+        <article>
+          <span>Cloud</span>
+          <h3>Worker and email trigger</h3>
+          <p>A Cloudflare Worker converts the device request into an email with the subject line “Bing.”</p>
+        </article>
+        <article>
+          <span>Phone</span>
+          <h3>Shortcuts automation</h3>
+          <p>An iPhone automation responds by maximizing the phone’s sound and visual alerts.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+      <ol class="project-list">
+        <li><strong>Connect:</strong> when the box turns on, the ESP32 connects to Wi-Fi and rapidly flashes its status light to confirm that it is online.</li>
+        <li><strong>Request:</strong> pressing the button makes the ESP32 send an authenticated HTTP request to a Cloudflare Worker. The light remains on briefly to acknowledge the press.</li>
+        <li><strong>Trigger:</strong> the Worker sends an email with the subject line “Bing,” which activates a custom automation on the iPhone.</li>
+        <li><strong>Alert:</strong> the automation disables Do Not Disturb and silent mode, raises the volume to 100%, and repeatedly flashes the flashlight.</li>
+        <li><strong>Stop:</strong> the alert continues while a local state file contains “true.” Opening Messages runs a second shortcut that temporarily changes the file to “false,” stopping the loop, before resetting it for the next use.</li>
+      </ol>
+
+      <div class="gallery single-row"><img src="../assets/gallery/phone-binger/phone-binger-1.jpg" alt="Phone Binger prototype enclosure and activation button"></div>
+    </section>
+
+    <section>
+      <h2>Firmware</h2>
+      <p>The ESP32 firmware uses edge detection so one button press produces one request, even if the button remains held. A non-blocking timer controls the indicator light, and the HTTP client uses a timeout so a slow server cannot stall the device indefinitely. Credentials are replaced with placeholders below and are not stored in the portfolio.</p>
+
+      <pre class="code-block" aria-label="Sanitized ESP32 firmware excerpt"><code>#include &lt;WiFi.h&gt;
+#include &lt;HTTPClient.h&gt;
+
+#define BUTTON 14
+#define LIGHT 22
+#define LIGHT_DURATION_MS 5000
+
+const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";
+const char* webhookUrl = "https://YOUR-WORKER.workers.dev/";
+const char* secretKey = "YOUR_SECRET_KEY";
+
+bool lastButtonState = HIGH;
+unsigned long lightOffAt = 0;
+
+void setup() {
+  pinMode(BUTTON, INPUT_PULLUP);
+  pinMode(LIGHT, OUTPUT);
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
+
+  unsigned long startedAt = millis();
+  while (WiFi.status() != WL_CONNECTED &amp;&amp;
+         millis() - startedAt &lt; 15000) {
+    delay(100);
+  }
+
+  if (WiFi.status() == WL_CONNECTED) {
+    for (int i = 0; i &lt; 3; i++) {
+      digitalWrite(LIGHT, HIGH);
+      delay(100);
+      digitalWrite(LIGHT, LOW);
+      delay(100);
+    }
+  }
+}
+
+void loop() {
+  unsigned long now = millis();
+  int buttonState = digitalRead(BUTTON);
+
+  if (lastButtonState == HIGH &amp;&amp; buttonState == LOW) {
+    digitalWrite(LIGHT, HIGH);
+    lightOffAt = now + LIGHT_DURATION_MS;
+    sendWebhook();
+  }
+  lastButtonState = buttonState;
+
+  if (lightOffAt != 0 &amp;&amp; now &gt;= lightOffAt) {
+    digitalWrite(LIGHT, LOW);
+    lightOffAt = 0;
+  }
+}
+
+void sendWebhook() {
+  if (WiFi.status() != WL_CONNECTED) return;
+
+  HTTPClient http;
+  http.setTimeout(2000);
+  http.begin(webhookUrl);
+  http.addHeader("X-Custom-Auth", secretKey);
+  int responseCode = http.GET();
+  Serial.printf("Response Code: %d\n", responseCode);
+  http.end();
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Next steps</h2>
+      <p>The current build proves the end-to-end interaction from a physical button to a phone alert. The next step is to design and 3D print a finished housing that protects the electronics, secures the button and light, and creates a compact device that can remain in a consistent location at home.</p>
+    </section>
+  </main>
+
+  <footer><div><a href="mailto:liam.korol@duke.edu">liam.korol@duke.edu</a><a href="https://www.linkedin.com/" target="_blank">LinkedIn ↗</a></div></footer>
+</body>
+</html>
